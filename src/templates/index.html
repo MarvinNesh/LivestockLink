@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivestockLink Dashboard</title>
+    <title>Welcome to LivestockLink</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome for icons -->
 </head>
 <body>
 
@@ -12,32 +13,42 @@
         <a href="/" class="navbar-brand">LivestockLink</a>
         <div class="navbar-nav">
             <a href="/login">Login</a>
-            <a href="/register" class="btn">Register</a>
+            <a href="/register" class="btn">Get Started</a>
         </div>
     </nav>
 
-    <div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ url_for('static', filename='images/cow-7395115_1280.jpg') }}');">
-        <h1>Empowering Smallholder Farmers</h1>
-        <p>Your complete livestock management solution.</p>
-    </div>
+    <header class="hero">
+        <!-- Find a royalty-free video of a farm/landscape and add it to static/videos/bg.mp4 -->
+        <video playsinline autoplay muted loop id="bg-video">
+            <source src="{{ url_for('static', filename='videos/bg.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Revolutionizing Livestock Management</h1>
+            <p>Smart, simple, and effective tools for the modern farmer.</p>
+        </div>
+    </header>
 
-    <div class="container">
+    <main class="container">
+        <h2 class="section-title">Core Features</h2>
         <div class="dashboard-widgets">
             <div class="widget">
-                <img src="{{ url_for('static', filename='images/goat-4884605_1280.jpg') }}" alt="Goat">
+                <div class="icon"><i class="fas fa-paw"></i></div>
                 <h3>Herd Tracking</h3>
                 <p>Log and monitor your animals with ease, even offline.</p>
             </div>
             <div class="widget">
+                <div class="icon"><i class="fas fa-search-plus"></i></div>
                 <h3>Symptom Scanner</h3>
-                <p>Analyze photos for common diseases using AI.</p>
+                <p>Analyze photos for common diseases using cutting-edge AI.</p>
             </div>
             <div class="widget">
+                <div class="icon"><i class="fas fa-bell"></i></div>
                 <h3>Outbreak Alerts</h3>
-                <p>Stay informed about local disease outbreaks.</p>
+                <p>Stay informed about local disease outbreaks to protect your herd.</p>
             </div>
         </div>
-    </div>
+    </main>
 
 </body>
 </html>
