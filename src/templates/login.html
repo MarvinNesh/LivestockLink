@@ -4,38 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - LivestockLink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-panel branding-panel">
-            <h1>Welcome Back!</h1>
-            <p>Log in to manage your herd and access powerful farming tools.</p>
-        </div>
-        <div class="auth-panel form-panel">
-            <div class="form-container">
-                <h1>Member Login</h1>
-                {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                    <div class="alert alert-danger">
-                      {{ messages[0] }}
+    <div class="container-fluid ps-md-0">
+        <div class="row g-0">
+            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+            <div class="col-md-8 col-lg-6">
+                <div class="login d-flex align-items-center py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9 col-lg-8 mx-auto">
+                                <h1 class="login-heading mb-4">Welcome Back!</h1>
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                    {% if messages %}
+                                        {% for category, message in messages %}
+                                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                                <form action="{{ url_for('auth.login') }}" method="post">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                        <label for="email">Email address</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
+                                        <div class="text-center">
+                                            <a class="small" href="{{ url_for('auth.register') }}">Don't have an account? Register</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                  {% endif %}
-                {% endwith %}
-                <form action="{{ url_for('auth.login') }}" method="post">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn-submit">Login</button>
-                </form>
-                <p class="auth-switch\">Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.</p>
+                </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
