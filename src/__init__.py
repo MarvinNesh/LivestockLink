@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-from flask_login import LoginManager
-from .models import db, User
+from .extensions import db, login_manager
+from .models import User
 import os
 
 def create_app():
@@ -12,10 +12,9 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
-
-    login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    
+    login_manager.login_view = 'auth.login'
 
     @login_manager.user_loader
     def load_user(user_id):
