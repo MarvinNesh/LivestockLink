@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Symptom Scanner - LivestockLink{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="section-title">Symptom Scanner</h1>
+    <p class="text-center">Upload an image of your animal to check for common symptoms.</p>
+    
+    <div class="scanner-container">
+        <form action="{{ url_for('scanner.scanner') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image-upload" class="upload-label">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Choose an Image</span>
+                </label>
+                <input type="file" id="image-upload" name="image" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn-submit">Analyze Image</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
