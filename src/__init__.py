@@ -15,6 +15,8 @@ def create_app():
     login_manager.init_app(app)
     
     login_manager.login_view = 'auth.login'
+    login_manager.login_message = "You must be logged in to access this page."
+    login_manager.login_message_category = "warning"
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -22,6 +24,9 @@ def create_app():
 
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
+
+    from .scanner import scanner_bp
+    app.register_blueprint(scanner_bp)
 
     @app.route('/')
     def dashboard():
