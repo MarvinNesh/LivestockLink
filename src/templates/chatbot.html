@@ -2,6 +2,9 @@
 
 {% block styles %}
 {{ super() }}
+<!-- Font Awesome CSS CDN (avoids CORS issues) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-pO1B9QZ2qXVk/2LxvJR0ZGx9MZ2oVQfZ6cZ9vGJZrX0rCz5/4o0IhXQxKXf8nK0tP0Z0kl5sO8D0x9cGp1+3Ug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
     .chat-container {
         max-width: 800px;
@@ -52,7 +55,7 @@
         align-self: flex-start;
         border-bottom-left-radius: 4px;
     }
-
+    
     .typing-indicator {
         align-self: flex-start;
         color: #6c757d;
