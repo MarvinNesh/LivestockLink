@@ -345,24 +345,28 @@ body {
 }
 
 /* --- Chat Styles --- */
+
 .chat-container {
     max-width: 800px;
     margin: 2rem auto;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 70vh;
-    background-color: #f9f9f9;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    font-family: 'Poppins', sans-serif;
 }
 
 .chat-header {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     padding: 1rem;
     text-align: center;
     font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .chat-box {
@@ -371,6 +375,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    background-color: var(--light-gray);
 }
 
 .chat-message {
@@ -379,25 +384,27 @@ body {
     margin-bottom: 0.5rem;
     max-width: 70%;
     line-height: 1.4;
+    word-wrap: break-word;
 }
 
 .user-message {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     align-self: flex-end;
     border-bottom-right-radius: 4px;
 }
 
 .bot-message {
-    background-color: #e9ecef;
-    color: #333;
+    background-color: #e3c65a; /* Softer gold */
+    color: var(--dark-gray);
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
 
+
 .typing-indicator {
     align-self: flex-start;
-    color: #6c757d;
+    color: #777;
     font-style: italic;
 }
 
@@ -405,7 +412,7 @@ body {
     display: flex;
     padding: 1rem;
     border-top: 1px solid #ddd;
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .chat-input {
@@ -414,9 +421,21 @@ body {
     border-radius: 20px;
     padding: 0.5rem 1rem;
     margin-right: 0.5rem;
+    font-family: 'Poppins', sans-serif;
 }
 
-.send-btn { border-radius: 20px; }
+.send-btn {
+    border-radius: 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+    background-color: #1e462f;
+}
+
 
 /* --- Moving Panel --- */
 .moving-panel {
