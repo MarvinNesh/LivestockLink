@@ -36,4 +36,7 @@ def create_app():
     from .scanner.routes import scanner_bp
     app.register_blueprint(scanner_bp)
 
+    from .tips.routes import tips_bp
+    app.register_blueprint(tips_bp)
+
     return app
