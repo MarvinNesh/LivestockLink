@@ -72,3 +72,12 @@ def scrape_outbreaks():
         return f"Error fetching the URL: {e}"
 
     soup = BeautifulSoup(response.content, 'html.parser')
+
+    log.info("Looking for article links.")
+    pdf_links = soup.find_all('a', href=re.compile(r'\.pdf$'))
+    log.info(f"Found {len(pdf_links)} potential PDF article links.")
+
+    keywords = [
+        'outbreak', 'disease', 'foot and mouth', 
+        'avian influenza', 'anthrax', 'rabies', 'brucellosis', 'fmd'
+    ]
