@@ -51,8 +51,14 @@ def create_app():
     from .tips.routes import tips_bp
     app.register_blueprint(tips_bp, url_prefix='/')
 
+    from .outbreaks.routes import outbreaks_bp
+    app.register_blueprint(outbreaks_bp, url_prefix='/')
+
     from .chatbot.routes import chatbot_bp
     app.register_blueprint(chatbot_bp, url_prefix='/')
+
+    from .admin.routes import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
 
     @app.route('/')
     def index():
