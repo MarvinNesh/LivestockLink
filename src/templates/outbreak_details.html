@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ outbreak.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ outbreak.title }}</h1>
+    <p class="text-muted text-center">{{ outbreak.date }}</p>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text" style="white-space: pre-wrap;">{{ outbreak.content }}</p>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ url_for('outbreaks.outbreaks') }}" class="btn btn-primary">Back to Outbreaks</a>
+    </div>
+</div>
+{% endblock %}
