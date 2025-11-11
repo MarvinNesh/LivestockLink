@@ -63,4 +63,11 @@ def analyze_image(image_path):
         else:
             diagnosis = f'Unknown (index {prediction} out of 0-{len(labels)-1})'
         
+        # SA-specific recommendations
+        recs = {
+            'Healthy': 'Animal looks healthy—continue routine monitoring and biosecurity.',
+            'Newcastle': 'Urgent: Newcastle disease detected. Isolate affected birds immediately, vaccinate flock if not done. Contact DAFF hotline (0800 00 9999) for free advice/outbreak report. Losses can reach 90% without action.',
+            'Coccidiosis': 'Coccidiosis suspected (bloody droppings?). Treat with anticoccidials (e.g., Amprolium from co-op). Clean coop, avoid overcrowding. Common in wet seasons—consult local vet.',
+            'Salmonella': 'Salmonella alert (diarrhea/green droppings?). Quarantine, use antibiotics via vet prescription. Report to DAFF for flock testing. Prevent via clean water/feed.'
+        }
         
