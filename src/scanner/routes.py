@@ -39,6 +39,7 @@ def analyze_image(image_path):
     input_tensor = np.expand_dims(image_normalized, axis=0)
     
     try:
+        # Load TFLite model and run inference
         interpreter = Interpreter(model_path=MODEL_PATH)
         interpreter.allocate_tensors()
         input_details = interpreter.get_input_details()
@@ -48,7 +49,12 @@ def analyze_image(image_path):
         interpreter.invoke()
         output_data = interpreter.get_tensor(output_details[0]['index'])
         
-        
+        # Poultry-specific labels (alphabetical from dataset)
         labels = ['Coccidiosis', 'Healthy', 'Newcastle', 'Salmonella']
+        
+        
+        prediction = np.argmax(output_data[0])
+        
+        confidence = float(np.max(output_data[0]))
         
        
