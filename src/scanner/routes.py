@@ -57,4 +57,10 @@ def analyze_image(image_path):
         
         confidence = float(np.max(output_data[0]))
         
-       
+        # Safe indexing
+        if 0 <= prediction < len(labels):
+            diagnosis = labels[prediction]
+        else:
+            diagnosis = f'Unknown (index {prediction} out of 0-{len(labels)-1})'
+        
+        
