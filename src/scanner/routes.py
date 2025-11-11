@@ -78,4 +78,44 @@ def analyze_image(image_path):
             'recommendation': recommendation
         }
     
+    except Exception as e:
+        print(f"Inference error: {str(e)}")
+        return {'diagnosis': f'Analysis error: {str(e)}', 'confidence': '0%', 'recommendation': 'Model issue—check logs.'}
+
+@scanner_bp.route('/scanner', methods=['GET', 'POST'])
+@login_required
+def scanner():
+    """Handles symptom scanner page and image upload/analysis."""
+    if request.method == 'POST':
+        # Check for 'image' to match template; fallback to 'file'
+        file_key = 'image' if 'image' in request.files else 'file'
+        if file_key not in request.files:
+            return jsonify({'error': 'No file uploaded.'}), 400
+        
+        file = request.files[file_key]
+        if file.filename == '':
+            return jsonify({'error': 'No file selected.'}), 400
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(filepath)
+            
+            result = analyze_image(filepath)
+            print(result)
+            
+            # Move to processed for preview (instead of remove)
+            processed_folder = os.path.join(UPLOAD_FOLDER, 'processed')
+            os.makedirs(processed_folder, exist_ok=True)
+            shutil.move(filepath, os.path.join(processed_folder, filename))
+            
+            return jsonify({
+                'filename': f'processed/{filename}',  # Updated for preview path
+                'diagnosis': result['diagnosis'],
+                'confidence': result['confidence'],
+                'recommendation': result['recommendation']
+            })
+        
+        return jsonify({'error': 'Invalid file type.'}), 400
     
+    return render_template('scanner.html')
