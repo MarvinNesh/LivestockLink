@@ -22,3 +22,11 @@ LABELS_PATH = 'imagenet_labels.txt'
 
 
 
+def analyze_image(image_path):
+    """Analyzes uploaded image for poultry disease symptoms using fine-tuned ML."""
+    # Load and preprocess image
+    image = cv2.imread(image_path)
+    if image is None:
+        return {'diagnosis': 'Error: Invalid image', 'confidence': '0%', 'recommendation': 'Try uploading again.'}
+    
+    
