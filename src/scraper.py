@@ -48,18 +48,7 @@ def scrape_outbreaks():
 
   
     
-    # Do not clear the database; make it incremental
-    # try:
-    #     log.info("Clearing existing outbreak data from the database.")
-    #     db.session.query(Outbreak).delete()
-    #     db.session.commit()
-    #     log.info("Database cleared.")
-    # except Exception as e:
-    #     db.session.rollback()
-    #     log.error(f"Error clearing database: {e}")
-    #     return f"Error clearing database: {e}"
-
-    # Determine the cutoff date: all from 2024 onwards for initial population
+   
     cutoff_year = 2024
     cutoff_date = datetime(cutoff_year, 1, 1)
 
